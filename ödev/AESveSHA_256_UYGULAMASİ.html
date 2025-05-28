@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>AES ve SHA-256 Uygulaması</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 30px;
+      background: linear-gradient(135deg, #ff6f91, #ff4e50);
+      color: #fff0f5;
+      animation: fadeInBody 1.5s ease-in;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h2 {
+      color: #ffffff;
+      background-color: #c2185b;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    label {
+      font-weight: bold;
+      color: #f8bbd0;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      box-sizing: border-box;
+      border: 2px solid #f06292;
+      border-radius: 10px;
+      background-color: #ffe4ec;
+      font-size: 16px;
+      color: #880e4f;
+      transition: border-color 0.3s;
+    }
+
+    textarea:focus, input:focus {
+      border-color: #ec407a;
+      outline: none;
+    }
+
+    button {
+      padding: 12px 25px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f06292, #ec407a);
+      color: #ffffff;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    pre {
+      background-color: #880e4f;
+      padding: 14px;
+      border-radius: 10px;
+      word-wrap: break-word;
+      font-family: Consolas, monospace;
+      color: #fce4ec;
+      animation: fadeInResult 1s ease-out;
+    }
+
+    @keyframes fadeInResult {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section {
+      margin-bottom: 40px;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+      animation: fadeInSection 1.2s ease-in-out;
+    }
+
+    @keyframes fadeInSection {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section">
+    <h2>AES Şifreleme / Şifre Çözme</h2>
+    <label>Girdi Metni:</label>
+    <textarea id="aesInput" rows="4"></textarea>
+
+    <label>Şifreleme Anahtarı (16 karakter):</label>
+    <input type="text" id="aesKey" maxlength="16" placeholder="örn: 1234567890abcdef">
+
+    <button onclick="encryptAES()">Şifrele (AES)</button>
+    <button onclick="decryptAES()">Şifre Çöz (AES)</button>
+
+    <h4>Sonuç:</h4>
+    <pre id="aesResult"></pre>
+  </div>
+
+  <div class="section">
+    <h2>SHA-256 Özetleme</h2>
+    <label>Girdi Metni:</label>
+    <textarea id="shaInput" rows="4"></textarea>
+    <button onclick="hashSHA256()">SHA-256 Özetle</button>
+
+    <h4>SHA-256 Sonucu:</h4>
+    <pre id="shaResult"></pre>
+  </div>
+
+  <script>
+    function arrayBufferToBase64(buffer) {
+      const bytes = new Uint8Array(buffer);
+      const binary = bytes.reduce((acc, b) => acc + String.fromCharCode(b), '');
+      return btoa(binary);
+    }
+
+    function base64ToArrayBuffer(base64) {
+      const binary = atob(base64);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+      }
+      return bytes;
+    }
+
+    async function encryptAES() {
+      const text = document.getElementById("aesInput").value;
+      const keyText = document.getElementById("aesKey").value;
+
+      if (keyText.length !== 16) {
+        alert("Anahtar 16 karakter olmalı (AES-128 için).");
+        return;
+      }
+
+      const enc = new TextEncoder();
+      const keyData = enc.encode(keyText);
+      const key = await crypto.subtle.importKey(
+        "raw", keyData, { name: "AES-CBC" }, false, ["encrypt"]
+      );
+
+      const iv = crypto.getRandomValues(new Uint8Array(16));
+      const encrypted = await crypto.subtle.encrypt(
+        { name: "AES-CBC", iv: iv },
+        key,
+        enc.encode(text)
+      );
+
+      const combined = new Uint8Array(iv.byteLength + encrypted.byteLength);
+      combined.set(iv, 0);
+      combined.set(new Uint8Array(encrypted), iv.byteLength);
+
+      const result = arrayBufferToBase64(combined);
+      document.getElementById("aesResult").textContent = result;
+    }
+
+    async function decryptAES() {
+      const base64Data = document.getElementById("aesResult").textContent;
+      const keyText = document.getElementById("aesKey").value;
+
+      if (keyText.length !== 16) {
+        alert("Anahtar 16 karakter olmalı.");
+        return;
+      }
+
+      const data = base64ToArrayBuffer(base64Data);
+      const iv = data.slice(0, 16);
+      const encrypted = data.slice(16);
+
+      const enc = new TextEncoder();
+      const keyData = enc.encode(keyText);
+      const key = await crypto.subtle.importKey(
+        "raw", keyData, { name: "AES-CBC" }, false, ["decrypt"]
+      );
+
+      try {
+        const decrypted = await crypto.subtle.decrypt(
+          { name: "AES-CBC", iv: iv },
+          key,
+          encrypted
+        );
+        const dec = new TextDecoder();
+        document.getElementById("aesResult").textContent = dec.decode(decrypted);
+      } catch (e) {
+        alert("Şifre çözme başarısız. Anahtar yanlış olabilir.");
+      }
+    }
+
+    async function hashSHA256() {
+      const text = document.getElementById("shaInput").value;
+      const enc = new TextEncoder();
+      const data = enc.encode(text);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+      document.getElementById("shaResult").textContent = hashHex;
+    }
+  </script>
+</body>
+</html>
