@@ -53,10 +53,10 @@ Modern web tarayıcılarında **AES-128** şifreleme ve şifre çözme ile **SHA
 
 ## 📸 Ekran Görüntüsü
 
-![Uygulama Ekran Görüntüsü](image0.png)
-![Uygulama Ekran Görüntüsü](image1.png)
-![Uygulama Ekran Görüntüsü](image2.png)
-![Uygulama Ekran Görüntüsü](image3.png)
+![Uygulama Ekran Görüntüsü](ödev/image0.png)
+![Uygulama Ekran Görüntüsü](ödev/image1.png)
+![Uygulama Ekran Görüntüsü](ödev/image2.png)
+![Uygulama Ekran Görüntüsü](ödev/image3.png)
 ---
 
 
