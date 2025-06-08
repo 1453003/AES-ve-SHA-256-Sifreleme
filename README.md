@@ -24,6 +24,7 @@ Bu proje, metin tabanlı verileri AES algoritması ile şifreleme/çözme ve SHA
 ## 📁 Dosya Yapısı
 
 📦 ÖDEV
+
 ├── AESveSHA_256_UYGULAMASİ.html # Ana HTML dosyası
 
 ├── AESveSHA.html # Ana HTML dosyası
