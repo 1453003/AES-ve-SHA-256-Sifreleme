@@ -1,62 +1,97 @@
-# 🎉 AES ve SHA-256 Şifreleme / Özetleme Uygulaması 🔐
+# 🔐 AES ve SHA-256 Şifreleme Uygulaması
+
+Bu proje, metin tabanlı verileri AES algoritması ile şifreleme/çözme ve SHA-256 algoritması ile özet (hash) alma işlemleri gerçekleştiren bir web uygulamasıdır. Uygulama tamamen istemci tarafında (client-side) çalışır ve herhangi bir sunucuya ihtiyaç duymaz.
+
+## 🎯 Projenin Amacı
+
+- **AES (Advanced Encryption Standard)** ile güvenli veri şifreleme ve çözme işlemleri yapmak.
+- **SHA-256 (Secure Hash Algorithm)** ile metinlerden geri döndürülemez dijital özetler üretmek.
+- Web teknolojilerini (HTML, CSS, JavaScript) kullanarak kriptografi konularını görsel ve interaktif bir şekilde uygulamak.
 
 ---
 
-## 🚀 Proje Hakkında
+## 🧩 Teknolojiler
 
-Modern web tarayıcılarında **AES-128** şifreleme ve şifre çözme ile **SHA-256** özetleme işlemlerini yapabileceğiniz bir araç!  
-
----
-
-## ✨ Özellikler
-
-- 🔑 **AES-128 Şifreleme / Şifre Çözme**  
-  16 karakterlik anahtar ile hızlı ve güvenli veri şifreleme.
-  
-- 🛡️ **SHA-256 Özetleme**  
-  Metinlerinizi güçlü ve tek yönlü hash algoritmasıyla özetleyin.
-
-
+| Teknoloji     | Açıklama                                  |
+|---------------|--------------------------------------------|
+| HTML5         | Sayfa yapısını oluşturmak için kullanıldı. |
+| CSS3          | Arayüz tasarımı ve stillendirme.           |
+| JavaScript    | Şifreleme, çözme ve hash işlemleri.        |
+| CryptoJS      | AES ve SHA-256 işlemleri için kullanıldı. *(Harici script olarak çağrılmış olabilir.)* |
 
 ---
 
-## 📋 Kullanım Kılavuzu
+## 📁 Dosya Yapısı
 
-### AES Şifreleme / Şifre Çözme
+📦 ÖDEV
 
-1. **Metni Girin:** Şifrelemek veya şifre çözmek istediğiniz metni yazın.  
-2. **Anahtarı Girin:** 16 karakterden oluşan bir şifreleme anahtarı girin (örneğin: `1234567890abcdef`).  
-3. **Şifrele:** "Şifrele (AES)" butonuna basarak verinizi şifreleyin.  
-4. **Şifre Çöz:** Şifrelenmiş metni aynı alana yapıştırın ve "Şifre Çöz (AES)" butonuna basın.
+├── AESveSHA.html # Ana HTML dosyası
 
-### SHA-256 Özetleme
+├── js1.js # AES şifreleme ve çözme scripti
 
-1. **Metni Girin:** Özetini almak istediğiniz metni yazın.  
-2. **SHA-256 Özetle:** Butona tıklayın, sonuç anında görüntülenecektir.
+├── js2.js # SHA-256 hash oluşturma scripti
+
+├── style1.css # Sol panel (AES) stil dosyası
+
+├── style2.css # Sağ panel (SHA-256) stil dosyası
+
+├── image0.png # Görsel - tasarımda kullanılıyor olabilir
+
+├── image1.png
+
+├── image2.png
+
+├── image3.png # Uygulamanın ekran görüntüsü
+
+
 
 ---
 
-## 🛠️ Teknolojiler
+## 🖥️ Kullanım Talimatları
 
-- **HTML5, CSS3, JavaScript (ES6+)**  
-- **Web Crypto API** (AES & SHA-256)  
-- Modern ve duyarlı tasarım teknikleri
-
----
-
-## 📂 Dosyalar
-
-- `index.html` — Uygulamanın tamamını içeren ana dosya  
-- `README.md` — Proje bilgileri ve kullanım kılavuzu
+1. Proje klasörünü bilgisayarınıza indirin veya kopyalayın.
+2. `AESveSHA.html` dosyasını çift tıklayarak tarayıcıda açın.
+3. AES Panelinde:
+   - Metin girin.
+   - `Şifrele` butonu ile AES algoritması kullanarak şifreleyin.
+   - `Şifreyi Çöz` ile şifrelenmiş veriyi tekrar çözüp orijinaline ulaşın.
+4. SHA-256 Panelinde:
+   - Metin girin.
+   - `Hash Oluştur` butonuna tıklayarak SHA-256 özeti oluşturun.
+5. `Kopyala` butonu ile sonuçları panoya aktarabilirsiniz.
 
 ---
 
 ## 📸 Ekran Görüntüsü
 
-![Uygulama Ekran Görüntüsü](ödev/image0.png)
-![Uygulama Ekran Görüntüsü](ödev/image1.png)
-![Uygulama Ekran Görüntüsü](ödev/image2.png)
-![Uygulama Ekran Görüntüsü](ödev/image3.png)
+![Uygulama Görseli](ödev/image0.png)
+![Uygulama Görseli](ödev/image1.png)
+![Uygulama Görseli](ödev/image2.png)
+![Uygulama Görseli](ödev/image3.png)
+
 ---
 
+## 🔐 Kriptografi Açıklamaları
 
+- **AES (Advanced Encryption Standard):** Simetrik şifreleme algoritmasıdır. Aynı anahtar hem şifreleme hem de çözme işlemleri için kullanılır.
+- **SHA-256:** Tek yönlü bir özetleme algoritmasıdır. Geri çözülemez ve genellikle veri doğrulama, parola saklama gibi işlemlerde kullanılır.
+
+---
+
+## ⚠️ Notlar
+
+- Uygulama sadece eğitim ve demo amaçlıdır.
+- Gerçek dünya uygulamalarında, güvenli anahtar yönetimi, HTTPS ve sunucu tarafı şifreleme önemlidir.
+
+---
+
+## 🧑‍💻 Geliştirici
+
+Bu uygulama **[ROJİN ORHAN]** tarafından geliştirilmiştir.  
+Haziran 2025 – Kriptografi Projesi
+
+---
+
+## 📝 Lisans
+
+Bu proje kişisel, akademik ve eğitim amaçlı serbestçe kullanılabilir.
