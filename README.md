@@ -24,22 +24,23 @@ Bu proje, metin tabanlı verileri AES algoritması ile şifreleme/çözme ve SHA
 ## 📁 Dosya Yapısı
 
 📦 ÖDEV
+├── AESveSHA_256_UYGULAMASİ.html # Ana HTML dosyası
 
 ├── AESveSHA.html # Ana HTML dosyası
 
-├── js1.js # AES şifreleme ve çözme scripti
+├── js1.js # ESveSHA_256_UYGULAMASİ.html js kodları
 
-├── js2.js # SHA-256 hash oluşturma scripti
+├── js2.js # AESveSHA.html js kodları
 
-├── style1.css # Sol panel (AES) stil dosyası
+├── style1.css # ESveSHA_256_UYGULAMASİ.html css kodları
 
-├── style2.css # Sağ panel (SHA-256) stil dosyası
+├── style2.css # AESveSHA.html css kodları
 
-├── image0.png # Görsel - tasarımda kullanılıyor olabilir
+├── image0.png # Uygulamanın ekran görüntüsü
 
-├── image1.png
+├── image1.png# Uygulamanın ekran görüntüsü
 
-├── image2.png
+├── image2.png# Uygulamanın ekran görüntüsü
 
 ├── image3.png # Uygulamanın ekran görüntüsü
 
@@ -50,15 +51,16 @@ Bu proje, metin tabanlı verileri AES algoritması ile şifreleme/çözme ve SHA
 ## 🖥️ Kullanım Talimatları
 
 1. Proje klasörünü bilgisayarınıza indirin veya kopyalayın.
-2. `AESveSHA.html` dosyasını çift tıklayarak tarayıcıda açın.
-3. AES Panelinde:
+2. `AESveSHA_256_UYGULAMASİ.html` dosyasını çift tıklayarak tarayıcıda açın.
+3. Açılan tarayıcıda uygulamayı aç butonuna tıklayın.
+4. AES Panelinde:
    - Metin girin.
    - `Şifrele` butonu ile AES algoritması kullanarak şifreleyin.
    - `Şifreyi Çöz` ile şifrelenmiş veriyi tekrar çözüp orijinaline ulaşın.
-4. SHA-256 Panelinde:
+5. SHA-256 Panelinde:
    - Metin girin.
    - `Hash Oluştur` butonuna tıklayarak SHA-256 özeti oluşturun.
-5. `Kopyala` butonu ile sonuçları panoya aktarabilirsiniz.
+6. `Kopyala` butonu ile sonuçları panoya aktarabilirsiniz.
 
 ---
 
