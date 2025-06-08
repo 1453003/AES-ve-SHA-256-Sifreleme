@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AES Şifreleme ve SHA-256 Özet Fonksiyonu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style2.css">
+ 
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header>
+  <h1>🧬 AES Şifreleme ve SHA-256 Özet Fonksiyonu</h1>
+ 
+</header>
+
+<main>
+  <section class="card" id="aes-section">
+    <h2>🔐 AES Şifreleme & Şifre Çözme</h2>
+    
+    <label for="aes-input">Metin</label>
+    <textarea id="aes-input" placeholder="Şifrelenecek metni buraya yazınız..."></textarea>
+
+    <label for="aes-key">Anahtar (16 karakter önerilir)</label>
+    <input type="text" id="aes-key" maxlength="32" placeholder="Anahtarınızı yazınız..." />
+
+    <button id="encrypt-btn">Şifrele</button>
+    <button id="decrypt-btn">Şifreyi Çöz</button>
+
+    <label>Sonuç</label>
+    <output id="aes-output" aria-live="polite"></output>
+    <button onclick="copyToClipboard('aes-output')">📋 Kopyala</button>
+
+  </section>
+
+  <section class="card" id="sha256-section">
+    <h2>🛡 SHA-256 Özet Fonksiyonu</h2>
+    <label for="sha-input">Özetini almak istediğiniz metni girin</label>
+    <textarea id="sha-input" placeholder="Metni buraya yazınız..."></textarea>
+
+    <button id="hash-btn">SHA-256 Hash Oluştur</button>
+
+    <label>Özet (Hash)</label>
+    <output id="sha-output" aria-live="polite"></output>
+    <button onclick="copyToClipboard('sha-output')">📋 Kopyala</button>
+  </section>
+ 
+
+
+</main>
+  <!-- Her .card section'ının en altına ekle -->
+<div style="text-align: center; margin-top: 1.5rem;">
+  <button onclick="history.back()">🔙 Geri Dön</button>
+</div>
+
+
+  
+<footer>
+  © 2025 AES & SHA-256 Uygulaması | Hazırlayan: [ROJİN ORHAN]
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+<script src="js2.js"></script>
+
+
+</body>
+</html>
